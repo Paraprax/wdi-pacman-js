@@ -1,6 +1,7 @@
 // Setup initial game stats
 var score = 0;
 var lives = 2;
+var powerPellets = 4;
 
 
 // Define your ghosts here
@@ -56,6 +57,7 @@ function clearScreen() {
 
 function displayStats() {
   console.log('Score: ' + score + '     Extra Lives: ' + lives);
+  console.log('\nPower Pellets: ' + powerPellets);
 }
 
 function displayMenu() {
@@ -89,7 +91,7 @@ function eatGhost(ghost) {
     lives -= 1;
     console.log('\nPac-Man has been eaten by ' + ghost.name + ' the ' + ghost.colour + ' ghost!');
   }
-  if (lives < 0) {
+  if (lives < (-1)) {
     process.exit();
   }
 }
