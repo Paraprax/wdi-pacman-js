@@ -88,7 +88,9 @@ function eatGhost(ghost) {
   if (ghost.edible = 'false') {
     lives -= 1;
     console.log('\nPac-Man has been eaten by ' + ghost.name + ' the ' + ghost.colour + ' ghost!');
-
+  }
+  if (lives < 0) {
+    process.exit();
   }
 }
 
