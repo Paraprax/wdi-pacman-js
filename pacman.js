@@ -8,7 +8,7 @@ var lives = 2;
 var inky = {
   menu_option: '1',
   name: 'Inky',
-  colour: 'Red',
+  colour: 'red',
   character: 'Shadow',
   edible: false
 };
@@ -16,7 +16,7 @@ var inky = {
 var blinky = {
   menu_option: '2',
   name: 'Blinky',
-  colour: 'Cyan',
+  colour: 'cyan',
   character: 'Speedy',
   edible: false
 };
@@ -24,7 +24,7 @@ var blinky = {
 var pinky = {
   menu_option: '3',
   name: 'Pinky',
-  colour: 'Pink',
+  colour: 'pink',
   character: 'Bashful',
   edible: false
 };
@@ -32,7 +32,7 @@ var pinky = {
 var clyde = {
   menu_option: '4',
   name: 'Clyde',
-  colour: 'Orange',
+  colour: 'orange',
   character: 'Pokey',
   edible: false
 };
@@ -73,11 +73,20 @@ function displayPrompt() {
   process.stdout.write('\nWaka Waka :v '); // :v is the Pac-Man emoji.
 }
 
-
 // Menu Options
 function eatDot() {
   console.log('\nChomp!');
   score += 10;
+}
+
+/* switch(key) {
+  case '1':
+  break;
+}*/
+
+function eatGhost() {
+  console.log('\nPac-Man has been eaten by ' + ghosts[1].name + ' the ' + ghosts[1].colour + ' ghost!');
+  lives -= 1;
 }
 
 /* function printGhosts() {
@@ -94,21 +103,12 @@ function processInput(key) {
     case 'd':
       eatDot();
       break;
+    case 'e':
+      eatGhost();
+      break;
   /*  case 'g':
       printGhosts();
       break; */
-    case '1':
-      eatInky();
-      break;
-    case '2':
-      eatBlinky();
-      break;
-    case '3':
-      eatPinky();
-      break;
-    case '4':
-      eatClyde();
-      break;
     default:
       console.log('\nInvalid Command!');
   }
