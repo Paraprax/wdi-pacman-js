@@ -37,6 +37,8 @@ var clyde = {
   edible: false
 };
 
+var ghosts = [inky, blinky, pinky, clyde]
+
 
 // Draw the screen functionality
 function drawScreen() {
@@ -59,6 +61,10 @@ function displayStats() {
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
+  console.log('(1) Eat ' + ghosts[0].name);
+  console.log('(2) Eat ' + ghosts[1].name);
+  console.log('(3) Eat ' + ghosts[2].name);
+  console.log('(4) Eat ' + ghosts[3].name);
   console.log('(q) Quit');
 }
 
@@ -74,6 +80,9 @@ function eatDot() {
   score += 10;
 }
 
+/* function printGhosts() {
+  console.log(ghosts);
+} just playing with functions, cases and and arrays */
 
 // Process Player's Input
 function processInput(key) {
@@ -84,6 +93,21 @@ function processInput(key) {
       break;
     case 'd':
       eatDot();
+      break;
+  /*  case 'g':
+      printGhosts();
+      break; */
+    case '1':
+      eatInky();
+      break;
+    case '2':
+      eatBlinky();
+      break;
+    case '3':
+      eatPinky();
+      break;
+    case '4':
+      eatClyde();
       break;
     default:
       console.log('\nInvalid Command!');
