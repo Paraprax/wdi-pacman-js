@@ -63,6 +63,7 @@ function displayStats() {
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
+  console.log('(p) Eat Power-Pellet');
   console.log('(1) Eat ' + ghosts[0].name);
   console.log('(2) Eat ' + ghosts[1].name);
   console.log('(3) Eat ' + ghosts[2].name);
@@ -81,19 +82,26 @@ function eatDot() {
   score += 10;
 }
 
-/* switch(key) {
-  case '1':
-  break;
-}*/
 
 function eatGhost(ghost) {
   if (ghost.edible = 'false') {
     lives -= 1;
     console.log('\nPac-Man has been eaten by ' + ghost.name + ' the ' + ghost.colour + ' ghost!');
   }
-  if (lives < (-1)) {
+  if (lives < 0) {
     process.exit();
   }
+}
+
+function eatPowerPellet(ghost) {
+  if (powerPellets > 0) {
+     score += 50;
+     powerPellets -= 1;
+     console.log('\nvoop Voop VOOP! All ghosts now edible!');}
+
+  else {
+     console.log('\n No Power-Pellets Left!')
+   }
 }
 
 /* function printGhosts() {
@@ -121,6 +129,9 @@ function processInput(key) {
       break;
     case '4':
       eatGhost(clyde);
+      break;
+    case 'p':
+      eatPowerPellet();
       break;
   /*  case 'g':
       printGhosts();
