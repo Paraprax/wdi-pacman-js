@@ -3,6 +3,7 @@ var score = 0;
 var lives = 2;
 var dots = 240;
 var powerPellets = 4;
+var victory = ['ᗧ .   .   .   .             ', '  O   .   .   .           ', '    ᗧ .   .   .         ','      O   .   .       ','        ᗧ .   .     ','          O   .   ','            ᗧ . ','             O','             ᗧ  You','             O  You Win','             ᗧ  You Win!','             O  You Win!!','             ᗧ  You Win!!!','             O  You Win!!!!'];
 
 
 // Define your ghosts here
@@ -80,28 +81,27 @@ function displayPrompt() {
 
 // Menu Options
 function eatDot() {
-  if (dots > 0) {
+  if (dots >= 2) {
   console.log('\nChomp!');
   console.log('\n 10 points!')
   dots -= 1;
   score += 10;
   } else {
-    console.log('\n  ᗧ .   .   .   .             ');
-    console.log('\n    O   .   .   .             ');
-    console.log('\n      ᗧ .   .   .             ');
-    console.log('\n        O   .   .             ');
-    console.log('\n          ᗧ .   .             ');
-    console.log('\n            O   .             ');
-    console.log('\n              ᗧ .             ');
-    console.log('\n                O             ');
-    console.log('\n                  ᗧ  You Win!!');
-    console.log('\n                  O  You Win!!');
-    console.log('\n                  ᗧ  You Win!!');
-    console.log('\n                  O  You Win!!');
-    console.log('\n                  ᗧ  You Win!!');
-    console.log('\n                  O  You Win!!');
-    process.exit();
+    dots -= 1;
+    for (i = 0; i < victory.length; i++) {
+      victoryMessage(i);
+    }
+    setTimeout(function () {
+      process.exit()
+    }, 500*victory.length + 100);
   }
+}
+
+function victoryMessage(i) {
+  setTimeout(function () {
+    process.stdout.write("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
+    process.stdout.write(victory[i]);
+  }, 500*i);
 }
 
 
@@ -116,6 +116,7 @@ function eatGhost(ghost) {
     ghost.edible = false;
   }
   if (lives < 0) {
+    console.log('\nPac-Man is out of lives! You LOSE! Good DAY sir!');
     process.exit();
   }
 }
@@ -142,6 +143,8 @@ function isGhostEdible(ghost) {
     return '(status: inedible)';
   }
 }
+
+
 
 /* function printGhosts() {
   console.log(ghosts);
@@ -172,8 +175,11 @@ function processInput(key) {
     case 'p':
       eatPowerPellet();
       break;
-    case 'h':
+    case 't':
       eatTenDots();
+      break;
+    case 'h':
+      eatHundredDots();
       break;
   /*  case 'g':
       printGhosts();
@@ -186,16 +192,39 @@ function processInput(key) {
 //CHEAT CODES
 
 function eatTenDots() {
-  if (dots > 0) {
+  if (dots >= 11) {
   console.log('\nChomp!');
   console.log('\n 100 points!')
   dots -= 10;
   score += 100;
   } else {
-    console.log('\n You Win!')
-    process.exit();
+    dots -= 10;
+    for (i = 0; i < victory.length; i++) {
+      victoryMessage(i);
+    }
+    setTimeout(function () {
+    process.exit()
+    }, 500*victory.length + 100);
   }
 }
+
+function eatHundredDots() {
+  if (dots >= 101) {
+  console.log('\nChomp!');
+  console.log('\n 10000 points!')
+  dots -= 100;
+  score += 1000;
+} else {
+  dots -= 100;
+  for (i = 0; i < victory.length; i++) {
+    victoryMessage(i);
+  }
+  setTimeout(function () {
+  process.exit()
+  }, 500*victory.length + 100);
+}
+}
+
 
 
 //
