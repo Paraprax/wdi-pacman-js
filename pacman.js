@@ -10,7 +10,7 @@ var inky = {
   menu_option: '1',
   name: 'Inky',
   colour: 'red',
-  character: 'Shadow',
+  character: 'shadowy',
   edible: false
 };
 
@@ -18,7 +18,7 @@ var blinky = {
   menu_option: '2',
   name: 'Blinky',
   colour: 'cyan',
-  character: 'Speedy',
+  character: 'speedy',
   edible: false
 };
 
@@ -26,7 +26,7 @@ var pinky = {
   menu_option: '3',
   name: 'Pinky',
   colour: 'pink',
-  character: 'Bashful',
+  character: 'bashful',
   edible: false
 };
 
@@ -34,7 +34,7 @@ var clyde = {
   menu_option: '4',
   name: 'Clyde',
   colour: 'orange',
-  character: 'Pokey',
+  character: 'pokey',
   edible: false
 };
 
@@ -64,10 +64,10 @@ function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
   console.log('(p) Eat Power-Pellet');
-  console.log('(1) Eat ' + ghosts[0].name);
-  console.log('(2) Eat ' + ghosts[1].name);
-  console.log('(3) Eat ' + ghosts[2].name);
-  console.log('(4) Eat ' + ghosts[3].name);
+  console.log('(1) Eat ' + ghosts[0].name + isGhostEdible(inky));
+  console.log('(2) Eat ' + ghosts[1].name + isGhostEdible(blinky));
+  console.log('(3) Eat ' + ghosts[2].name + isGhostEdible(pinky));
+  console.log('(4) Eat ' + ghosts[3].name + isGhostEdible(clyde));
   console.log('(q) Quit');
 }
 
@@ -79,6 +79,7 @@ function displayPrompt() {
 // Menu Options
 function eatDot() {
   console.log('\nChomp!');
+  console.log('\n 10 points!')
   score += 10;
 }
 
@@ -90,6 +91,7 @@ function eatGhost(ghost) {
   } else {
     score += 200;
     console.log('\nPac-Man has eaten ' + ghost.name + ' the ' + ghost.character + ' ghost!');
+    console.log('\n 200 points!');
     ghost.edible = false;
   }
   if (lives < 0) {
@@ -104,11 +106,20 @@ function eatPowerPellet(ghost) {
      ghosts.forEach(function(ghost) {
        ghost.edible = true;
      });
-     console.log('\nvoop Voop VOOP! All ghosts now edible!');}
+     console.log('\nvoop Voop VOOP! All ghosts now edible!');
+     console.log('\n 50 points!');}
 
   else {
      console.log('\n No Power-Pellets Left!')
    }
+}
+
+function isGhostEdible(ghost) {
+  if (ghost.edible) {
+    return '(status: edible)';
+  } else {
+    return '(status: inedible)';
+  }
 }
 
 /* function printGhosts() {
