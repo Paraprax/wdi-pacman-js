@@ -84,9 +84,13 @@ function eatDot() {
 
 
 function eatGhost(ghost) {
-  if (ghost.edible = 'false') {
+  if (ghost.edible === false) {
     lives -= 1;
     console.log('\nPac-Man has been eaten by ' + ghost.name + ' the ' + ghost.colour + ' ghost!');
+  } else {
+    score += 200;
+    console.log('\nPac-Man has eaten ' + ghost.name + ' the ' + ghost.character + ' ghost!');
+    ghost.edible = false;
   }
   if (lives < 0) {
     process.exit();
@@ -97,6 +101,9 @@ function eatPowerPellet(ghost) {
   if (powerPellets > 0) {
      score += 50;
      powerPellets -= 1;
+     ghosts.forEach(function(ghost) {
+       ghost.edible = true;
+     });
      console.log('\nvoop Voop VOOP! All ghosts now edible!');}
 
   else {
