@@ -1,6 +1,7 @@
 // Setup initial game stats
 var score = 0;
 var lives = 2;
+var dots = 240;
 var powerPellets = 4;
 
 
@@ -58,6 +59,7 @@ function clearScreen() {
 function displayStats() {
   console.log('Score: ' + score + '     Extra Lives: ' + lives);
   console.log('\nPower Pellets: ' + powerPellets);
+  console.log ('\nDots: ' + dots);
 }
 
 function displayMenu() {
@@ -78,9 +80,28 @@ function displayPrompt() {
 
 // Menu Options
 function eatDot() {
+  if (dots > 0) {
   console.log('\nChomp!');
   console.log('\n 10 points!')
+  dots -= 1;
   score += 10;
+  } else {
+    console.log('\n  ᗧ .   .   .   .             ');
+    console.log('\n    O   .   .   .             ');
+    console.log('\n      ᗧ .   .   .             ');
+    console.log('\n        O   .   .             ');
+    console.log('\n          ᗧ .   .             ');
+    console.log('\n            O   .             ');
+    console.log('\n              ᗧ .             ');
+    console.log('\n                O             ');
+    console.log('\n                  ᗧ  You Win!!');
+    console.log('\n                  O  You Win!!');
+    console.log('\n                  ᗧ  You Win!!');
+    console.log('\n                  O  You Win!!');
+    console.log('\n                  ᗧ  You Win!!');
+    console.log('\n                  O  You Win!!');
+    process.exit();
+  }
 }
 
 
@@ -151,11 +172,28 @@ function processInput(key) {
     case 'p':
       eatPowerPellet();
       break;
+    case 'h':
+      eatTenDots();
+      break;
   /*  case 'g':
       printGhosts();
       break; */
     default:
       console.log('\nInvalid Command!');
+  }
+}
+
+//CHEAT CODES
+
+function eatTenDots() {
+  if (dots > 0) {
+  console.log('\nChomp!');
+  console.log('\n 100 points!')
+  dots -= 10;
+  score += 100;
+  } else {
+    console.log('\n You Win!')
+    process.exit();
   }
 }
 
@@ -177,7 +215,7 @@ drawScreen();
 stdin.on('data', function(key) {
   process.stdout.write(key);
   processInput(key);
-  setTimeout(drawScreen, 400); // The command prompt will flash a message for 300 milliseoncds before it re-draws the screen. You can adjust the 300 number to increase this.
+  setTimeout(drawScreen, 400); // The command prompt will flash a message for 400 milliseoncds before it re-draws the screen. You can adjust the 300 number to increase this.
 });
 
 // Player Quits
